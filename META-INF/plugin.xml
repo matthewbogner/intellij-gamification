@@ -1,0 +1,76 @@
+<idea-plugin version="2">
+    <id>net.ibogner.intellij.gamification</id>
+    <name>Intellij IDEA Gamification</name>
+    <version>0.0.1</version>
+    <vendor email="matt@ibogner.net" url="http://www.ibogner.net">iBogner</vendor>
+
+    <description><![CDATA[
+      <p>Adds gamification to normal day-to-day development tasks within Intellij IDEA. Working within the IDE will unlock
+      numerous badges, awards -- and shames -- as it inspects your code in background processes during compilation.</p>
+      ]]></description>
+
+    <!--<change-notes><![CDATA[-->
+      <!--Add change notes here.<br>-->
+      <!--<small>most HTML tags may be used</small>-->
+      <!--]]>-->
+    <!--</change-notes>-->
+
+    <!-- please see http://confluence.jetbrains.net/display/IDEADEV/Build+Number+Ranges for description -->
+    <idea-version since-build="107.105"/>
+
+    <!-- please see http://confluence.jetbrains.net/display/IDEADEV/Plugin+Compatibility+with+IntelliJ+Platform+Products
+         on how to target different products.
+
+         Depends specifically on Intellij IDEA. -->
+    <!--<depends>com.intellij.modules.java</depends>-->
+
+    <application-components>
+        <!-- Add your application components here -->
+    </application-components>
+
+    <project-components>
+        <!-- Add your project components here -->
+    </project-components>
+
+    <actions>
+        <!-- Add your actions here -->
+        <action id="generateComparisonChain" class="net.ibogner.intellij.gamification.comparisonchain.GenerateAction"
+                text="ComparisonChain..."
+                description="Generates an implementation of compareTo() using Guava ComparisonChain">
+            <add-to-group group-id="GenerateGroup" anchor="last"/>
+        </action>
+    </actions>
+
+    <extensions defaultExtensionNs="com.intellij">
+        <!-- Add your extensions here -->
+        <localInspection implementationClass="net.ibogner.intellij.gamification.comparisonchain.EqualsCompareConsistencyInspection"
+                         displayName="compareTo() inconsistent with equals()"
+                         groupName="Probable bugs"
+                         enabledByDefault="true"/>
+
+        <intentionAction>
+            <className>net.ibogner.intellij.gamification.comparisonchain.CompareFalseFirstIntention</className>
+        </intentionAction>
+
+
+        <!--<fileTypeFactory implementation="com.simpleplugin.SimpleFileTypeFactory"/>-->
+        <!--<lang.parserDefinition language="Simple" implementationClass="com.simpleplugin.SimpleParserDefinition"/>-->
+        <!--<lang.syntaxHighlighterFactory key="Simple" implementationClass="com.simpleplugin.SimpleSyntaxHighlighterFactory"/>-->
+        <!--<colorSettingsPage implementation="com.simpleplugin.SimpleColorSettingsPage"/>-->
+        <!--<annotator language="JAVA" implementationClass="com.simpleplugin.SimpleAnnotator"/>-->
+        <!--<codeInsight.lineMarkerProvider language="JAVA" implementationClass="com.simpleplugin.SimpleLineMarkerProvider"/>-->
+        <!--<completion.contributor language="Simple" implementationClass="com.simpleplugin.SimpleCompletionContributor"/>-->
+        <!--<psi.referenceContributor implementation="com.simpleplugin.SimpleReferenceContributor"/>-->
+        <!--<lang.findUsagesProvider language="Simple" implementationClass="com.simpleplugin.SimpleFindUsagesProvider"/>-->
+        <!--<lang.refactoringSupport language="Simple" implementationClass="com.simpleplugin.SimpleRefactoringSupportProvider"/>-->
+        <!--<lang.foldingBuilder language="JAVA" implementationClass="com.simpleplugin.SimpleFoldingBuilder"/>-->
+        <!--<gotoSymbolContributor implementation="com.simpleplugin.SimpleChooseByNameContributor"/>-->
+        <!--<lang.psiStructureViewFactory language="Simple" implementationClass="com.simpleplugin.SimpleStructureViewFactory"/>-->
+        <!--<lang.formatter language="Simple" implementationClass="com.simpleplugin.SimpleFormattingModelBuilder"/>-->
+        <!--<codeStyleSettingsProvider implementation="com.simpleplugin.SimpleCodeStyleSettingsProvider"/>-->
+        <!--<langCodeStyleSettingsProvider implementation="com.simpleplugin.SimpleLanguageCodeStyleSettingsProvider"/>-->
+        <!--<lang.commenter language="Simple" implementationClass="com.simpleplugin.SimpleCommenter"/>-->
+
+
+    </extensions>
+</idea-plugin>
